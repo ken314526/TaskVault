@@ -14,7 +14,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-// Routes
+app.get("/api/health", (req, res) => {
+  return res.status(200).json({ message: "TaskVault Server is running", uptime: process.uptime() });
+});
+
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/projects', require('./routes/projectRoutes'));
